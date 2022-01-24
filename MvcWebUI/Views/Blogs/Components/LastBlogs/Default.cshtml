@@ -1,0 +1,14 @@
+﻿@model BlogViewModel
+
+<div class="box">
+    <h3 class="title">Son Bloglarım</h3>
+    <div class="p-post">
+        @foreach (var blog in Model.Blogs)
+        {
+            <a asp-controller="Blogs" asp-action="BlogDetails" asp-route-id="@blog.Id">
+                <h3>@blog.Title</h3>
+                <span><i class="far fa-clock"></i>@blog.Date</span>
+            </a>
+        }
+    </div>
+</div>

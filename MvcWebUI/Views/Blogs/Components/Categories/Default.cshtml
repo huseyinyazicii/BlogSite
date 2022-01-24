@@ -1,0 +1,14 @@
+﻿@model CategoryViewModel
+
+<div class="box">
+    <h3 class="title">Kategoriler</h3>
+    <div class="category">
+        @for (int i = 0; i < Model.Categories.Count; i++)
+        {
+            <a asp-controller="Blogs" asp-action="Blogs" asp-route-id="@Model.Categories[i].Id">
+                @Model.Categories[i].Name 
+                <span>@Model.NumberOfBlogsByCategory[i]</span>
+            </a>
+        }
+    </div>
+</div>

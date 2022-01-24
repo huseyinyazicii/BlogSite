@@ -1,0 +1,32 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "twitter-bootstrap@5.1.3",
+      "destination": "wwwroot/Bootstrap/",
+      "files": [
+        "js/bootstrap.min.js",
+        "js/bootstrap.bundle.min.js.map",
+        "js/bootstrap.bundle.min.js",
+        "css/bootstrap.min.css",
+        "css/bootstrap.min.css.map"
+      ]
+    },
+    {
+      "library": "fontawesome-iconpicker@3.2.0",
+      "destination": "wwwroot/Fontawesome/"
+    },
+    {
+      "library": "font-awesome@5.15.4",
+      "destination": "wwwroot/Fontawesome/"
+    },
+    {
+      "library": "jquery@3.6.0",
+      "destination": "wwwroot/Jquery/",
+      "files": [
+        "jquery.min.js"
+      ]
+    }
+  ]
+}

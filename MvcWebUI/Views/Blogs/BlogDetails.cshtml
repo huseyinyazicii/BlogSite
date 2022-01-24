@@ -1,0 +1,53 @@
+﻿@model BlogViewModel
+
+@section Css
+{
+    <link rel="stylesheet" href="~/SiteTemplate/css/blogs.css">
+}
+
+<div style="background-color: #EEEEEE;">
+    <section class="container" id="posts">
+
+        <div class="posts-container">
+
+            <div class="post">
+                <img src="~/Images/Blogs/@Model.Blog.Image" alt="" class="image">
+                <div class="date">
+                    <i class="far fa-clock"></i>
+                    <span>@Model.Blog.Date</span>
+                </div>
+                <h3 class="title">@Model.Blog.Title</h3>
+                <p class="text">@Model.Blog.Content</p>
+                <div class="links">
+                    <a href="#" class="user">
+                        <i class="far fa-user"></i>
+                        <span>@Model.Blog.WriterFullName</span>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="far fa-comment"></i>
+                        <span>@Model.Blog.NumberOfComments</span>
+                    </a>
+                    <a href="#" class="icon">
+                        <i class="far fa-thumbs-up"></i>
+                        <span>@Model.Blog.NumberOfLikes</span>
+                    </a>
+                </div>
+            </div>
+
+            <hr class="my-5">
+
+            @await Component.InvokeAsync("Comments", new { id = Model.Blog.Id })
+
+        </div>
+
+        <div class="sidebar">
+
+            <partial name="~/Views/Blogs/Partials/About.cshtml" />
+
+            @await Component.InvokeAsync("Categories")
+
+            @await Component.InvokeAsync("LastBlogs")
+
+        </div>
+    </section>
+</div>

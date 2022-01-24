@@ -1,0 +1,33 @@
+/* Banner */
+.banner{
+    min-height: 80vh;
+    background:url(../images/banner.png) no-repeat;
+    background-size: cover;
+    background-position: center;
+    display: grid;
+    place-items: center;
+    padding-top: 8rem;
+}
+
+.banner .content{
+    text-align: center;
+    background:#fff;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    padding:3rem;
+    max-width: 50rem;
+}
+
+.banner .content h3{
+    font-size: 4rem;
+    color:var(--black);
+    text-transform: uppercase;
+}
+
+.banner .content p{
+    font-size: 1.7rem;
+    color:var(--light-color);
+    padding:1rem 0;
+    line-height: 1.5;
+}
+

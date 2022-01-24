@@ -1,0 +1,41 @@
+﻿@model BlogViewModel
+
+@section Css
+{
+    <link rel="stylesheet" href="~/SiteTemplate/css/homepage.css">
+}
+
+<section class="banner" id="banner">
+
+    <div class="content">
+        <h3>Coding Universe</h3>
+        <p>Yazılım dünyasında öğrendiğim yeni konuları sizlerle paylaşıyorum</p>
+        <a asp-controller="Blogs" asp-action="Blogs" class="btn">Tüm Bloglarım</a>
+    </div>
+
+</section>
+
+<div style="background-color: #EEEEEE;">
+    <section class="container">
+        <div class="row">
+            <h1 class="text-center display-3 my-5">SON BLOGLARIM</h1>
+            @foreach (var blog in Model.Blogs)
+            {
+                <div class="p-2 col-lg-4 col-sm-6">
+                    <div class="card shadow">
+                        <img src="~/Images/Blogs/@blog.Image" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title text-center h1">@blog.Title</h5>
+                            <p class="card-text" style="font-size: 14px;">@blog.Content</p>
+                            <div class="text-center">
+                                <a asp-controller="Blogs" asp-action="BlogDetails" asp-route-id="@blog.Id" class="btn">
+                                    Devamını oku..
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </section>
+</div>

@@ -1,0 +1,53 @@
+﻿@model MessageViewModel
+
+@section Css
+{
+    <link rel="stylesheet" href="~/SiteTemplate/css/contact.css">
+}
+
+<section class="contact" id="contact">
+    <div class="contact-info">
+        <div class="contact-card">
+            <i class="contact-icon fas fa-envelope"></i>
+            <div class="card-content">
+                <h3>Email</h3>
+                <span>CodingUniverse@gmail.com</span>
+            </div>
+        </div>
+        <div class="contact-card">
+            <i class="contact-icon fas fa-phone"></i>
+            <div class="card-content">
+                <h3>Telefon</h3>
+                <span>0545 921 6996</span>
+            </div>
+        </div>
+        <div class="contact-card">
+            <i class="contact-icon fas fa-map-marker-alt"></i>
+            <div class="card-content">
+                <h3>Konum</h3>
+                <span>Ankara</span>
+            </div>
+        </div>
+    </div>
+
+    <form asp-controller="Contact" asp-action="Message" method="POST">
+        <h3>Mesaj Gönder</h3>
+        <div class="inputBox">
+            <input type="text" placeholder="İsim" asp-for="UserName">
+            <span class="text-danger" asp-validation-for="UserName"></span>
+            <input type="email" placeholder="Email" asp-for="UserEmail">
+            <span class="text-danger" asp-validation-for="UserEmail"></span>
+        </div>
+        <div class="inputBox">
+            <input type="number" placeholder="Telefon" asp-for="UserPhone">
+            <span class="text-danger" asp-validation-for="UserPhone"></span>
+            <input type="text" placeholder="Konu" asp-for="Title">
+            <span class="text-danger" asp-validation-for="Title"></span>
+        </div>
+        <textarea placeholder="Mesajınız.." asp-for="UserMessage" cols="30" rows="10"></textarea>
+        <span class="text-danger" asp-validation-for="UserMessage"></span>
+        <div class="text-center btn-submit">
+            <input type="submit" value="Gönder" class="btn">
+        </div>
+    </form>
+</section>

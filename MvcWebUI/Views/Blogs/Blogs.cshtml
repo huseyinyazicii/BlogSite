@@ -1,0 +1,53 @@
+﻿@model BlogViewModel
+
+@section Css
+{
+    <link rel="stylesheet" href="~/SiteTemplate/css/blogs.css">
+}
+
+<div style="background-color: #EEEEEE;">
+    <section class="container" id="posts">
+
+        <div class="posts-container columnTwo">
+
+            @foreach (var blog in Model.Blogs)
+            {
+                <div class="post">
+                    <img src="~/Images/Blogs/@blog.Image" alt="" class="image">
+                    <div class="date">
+                        <i class="far fa-clock"></i>
+                        <span>@blog.Date</span>
+                    </div>
+                    <h3 class="title">@blog.Title</h3>
+                    <p class="text">@blog.Content</p>
+                    <a asp-controller="Blogs" asp-action="BlogDetails" asp-route-id="@blog.Id" class="btn">Devamnı oku..</a>
+                    <div class="links">
+                        <a href="#" class="user">
+                            <i class="far fa-user"></i>
+                            <span>@blog.WriterFullName</span>
+                        </a>
+                        <a href="#" class="icon">
+                            <i class="far fa-comment"></i>
+                            <span>@blog.NumberOfComments</span>
+                        </a>
+                        <a href="#" class="icon">
+                            <i class="far fa-thumbs-up"></i>
+                            <span>@blog.NumberOfLikes</span>
+                        </a>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+        <div class="sidebar">
+
+            <partial name="~/Views/Blogs/Partials/About.cshtml" />
+
+            @await Component.InvokeAsync("Categories")
+
+            @await Component.InvokeAsync("LastBlogs")
+
+        </div>
+    </section>
+</div>
