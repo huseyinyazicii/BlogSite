@@ -13,5 +13,6 @@ namespace DataAccess.Abstract
     public interface IBlogDal : IEntityRepository<Blog>
     {
         List<BlogDetailDto> GetBlogDetails(Expression<Func<BlogDetailDto, bool>> filter = null);
+        public int NumberOfBlogs();
     }
 }

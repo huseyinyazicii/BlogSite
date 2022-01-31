@@ -8,5 +8,6 @@ namespace Business.Abstract
     public interface ICommentService : IServiceRepository<Comment>
     {
         IDataResult<List<Comment>> GetByBlog(int blogId);
+        IDataResult<int> NumberOfComments();
     }
 }

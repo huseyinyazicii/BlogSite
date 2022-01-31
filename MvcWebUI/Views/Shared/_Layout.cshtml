@@ -24,6 +24,8 @@
     <script src="~/Bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="~/SiteTemplate/js/blogSite.js"></script>
     <script src="~/Jquery/jquery.min.js"></script>
+    <script src="~/SweetAlert2/sweetalert2.all.min.js"></script>
     @await Component.InvokeAsync("Notyf")
+    @await RenderSectionAsync("Scripts", false)
 </body>
 </html>

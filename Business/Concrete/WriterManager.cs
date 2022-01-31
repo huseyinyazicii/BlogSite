@@ -35,7 +35,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Writer>> GetAll()
         {
-            var result = _writerDal.GetAll();
+            var result = _writerDal.GetAll(w => w.Status == true);
             return new SuccessDataResult<List<Writer>>(result);
         }
 
@@ -43,6 +43,12 @@ namespace Business.Concrete
         {
             var result = _writerDal.Get(w => w.Id == id);
             return new SuccessDataResult<Writer>(result);
+        }
+
+        public IDataResult<int> NumberOfWriters()
+        {
+            var result = _writerDal.NumberOfWriters();
+            return new SuccessDataResult<int>(result);
         }
 
         [ValidationAspect(typeof(WriterValidator))]

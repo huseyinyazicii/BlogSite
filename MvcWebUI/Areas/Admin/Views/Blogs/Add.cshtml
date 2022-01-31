@@ -1,0 +1,35 @@
+﻿@model BlogViewModel
+
+<div class="row my-3">
+    <div class="col-md-6">
+        <h3>Blog Ekle</h3>
+    </div>
+</div>
+
+<form asp-action="Add" asp-controller="Blogs" asp-area="Admin" method="post">
+    <div class="mb-3 form-group">
+        <label asp-for="BlogData.Title" class="form-label">Başlık</label>
+        <input type="text" class="form-control" asp-for="BlogData.Title">
+        <span class="form-text text-danger" asp-validation-for="BlogData.Title"></span>
+    </div>
+    <div class="mb-3 form-group">
+        <label asp-for="BlogData.CategoryId" class="form-label">Kategori</label>
+        <select class="form-control" asp-for="BlogData.CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name"))"></select>
+        <span class="form-text text-danger" asp-validation-for="BlogData.CategoryId"></span>
+    </div>
+    <div class="mb-3 form-group">
+        <label asp-for="BlogData.Content" class="form-label">İçerik</label>
+        <textarea id="shorteditor" class="form-control" asp-for="BlogData.Content"></textarea>
+        <span class="form-text text-danger" asp-validation-for="BlogData.Content"></span>
+    </div>
+    <div class="mb-3 form-group">
+        <label asp-for="BlogData.Image" class="form-label">Resim</label>
+        <input type="file" class="form-control" asp-for="BlogData.Image">
+        <span class="form-text text-danger" asp-validation-for="BlogData.Image"></span>
+    </div>
+    <div class="text-center"><button type="submit" class="btn btn-primary">Ekle</button></div>
+</form>
+
+@section Scripts{
+    
+}

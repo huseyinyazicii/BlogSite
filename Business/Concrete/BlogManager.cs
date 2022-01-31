@@ -66,6 +66,12 @@ namespace Business.Concrete
             return new SuccessDataResult<Blog>(result);
         }
 
+        public IDataResult<int> NumberOfBlogs()
+        {
+            var result = _blogDal.NumberOfBlogs();
+            return new SuccessDataResult<int>(result);
+        }
+
         [ValidationAspect(typeof(BlogValidator))]
         public IResult Update(Blog blog)
         {

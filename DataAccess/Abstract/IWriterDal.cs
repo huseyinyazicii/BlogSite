@@ -5,5 +5,6 @@ namespace DataAccess.Abstract
 {
     public interface IWriterDal : IEntityRepository<Writer>
     {
+        public int NumberOfWriters();
     }
 }

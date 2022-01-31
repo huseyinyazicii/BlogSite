@@ -15,5 +15,6 @@ namespace Business.Abstract
         IDataResult<List<BlogDetailDto>> GetAllWithDetail(int number = 0);
         IDataResult<List<BlogDetailDto>> GetByCategory(int categoryId);
         IDataResult<BlogDetailDto> GetBlogDetailsById(int blogId);
+        IDataResult<int> NumberOfBlogs();
     }
 }

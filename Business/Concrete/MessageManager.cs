@@ -45,6 +45,12 @@ namespace Business.Concrete
             return new SuccessDataResult<Message>(result);
         }
 
+        public IDataResult<int> NumberOfMessages()
+        {
+            var result = _messageDal.NumberOfMessages();
+            return new SuccessDataResult<int>(result);
+        }
+
         [ValidationAspect(typeof(MessageValidator))]
         public IResult Update(Message message)
         {

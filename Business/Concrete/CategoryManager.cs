@@ -35,7 +35,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Category>> GetAll()
         {
-            var result = _categoryDal.GetAll();
+            var result = _categoryDal.GetAll(c => c.Status == true);
             return new SuccessDataResult<List<Category>>(result);
         }
 
@@ -43,6 +43,12 @@ namespace Business.Concrete
         {
             var result = _categoryDal.Get(c => c.Id == id);
             return new SuccessDataResult<Category>(result);
+        }
+
+        public IDataResult<int> NumberOfCategories()
+        {
+            var result = _categoryDal.NumberOfCategories();
+            return new SuccessDataResult<int>(result);
         }
 
         [ValidationAspect(typeof(CategoryValidator))]

@@ -51,3 +51,35 @@
         </div>
     </section>
 </div>
+
+@section Scripts{ 
+    <script>
+        $("#addcomment").click(function () {
+            let comment = {
+                BlogId: $("#blogid").val(),
+                UserName: $("#username").val(),
+                Content: $("#content").val()
+            };
+
+            $.ajax({
+                type: "post",
+                url: "/Comments/AddComment/",
+                data: comment,
+                success: function () {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Mesaj Gönderildi!!'
+                    });
+                    setTimeout(() => window.location.reload(false), 2000);
+                    
+                },
+                error: function () {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Mesaj Gönderilemedi!!'
+                    });
+                }
+            });
+        });
+    </script>
+}

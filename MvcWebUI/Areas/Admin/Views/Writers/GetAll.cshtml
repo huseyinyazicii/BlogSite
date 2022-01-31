@@ -1,0 +1,35 @@
+﻿@model WriterViewModel
+
+
+<div class="row my-3">
+    <div class="col-md-6">
+        <h3>Yazarlar</h3>
+    </div>
+    <div class="col-md-6 text-end">
+        <a href="/Admin/Writers/Add/" class="btn btn-outline-primary">Yeni Yazar</a>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped table-hover text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">İsim</th>
+            <th scope="col">Soyisim</th>
+            <th scope="col">Email</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var writer in Model.Writers)
+        {
+            <tr>
+                <td scope="row">@writer.Id</td>
+                <td>@writer.FirstName</td>
+                <td>@writer.LastName</td>
+                <td>@writer.Email</td>
+                <td><a href="/Admin/Writers/Delete/@writer.Id" class="btn btn-danger btn-sm">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>

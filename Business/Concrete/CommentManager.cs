@@ -51,6 +51,12 @@ namespace Business.Concrete
             return new SuccessDataResult<Comment>(result);
         }
 
+        public IDataResult<int> NumberOfComments()
+        {
+            var result = _commentDal.NumberOfComments();
+            return new SuccessDataResult<int>(result);
+        }
+
         [ValidationAspect(typeof(CommentValidator))]
         public IResult Update(Comment comment)
         {

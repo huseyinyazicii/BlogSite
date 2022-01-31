@@ -40,5 +40,14 @@ namespace DataAccess.Concrete.EntityFramework
                 return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
+
+        public int NumberOfBlogs()
+        {
+            using (var context = new CodingUniverseBlogContext())
+            {
+                var result = context.Blogs.Count();
+                return result;
+            }
+        }
     }
 }

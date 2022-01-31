@@ -1,0 +1,36 @@
+﻿@model MessageViewModel
+
+
+<div class="row my-3">
+    <div class="col-md-6">
+        <h3>Mesajlar</h3>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped table-hover text-center">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">İsim</th>
+            <th scope="col">Email</th>
+            <th scope="col">Telefon</th>
+            <th scope="col">Title</th>
+            <th scope="col">Mesaj</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var message in Model.Messages)
+        {
+            <tr>
+                <td scope="row">@message.Id</td>
+                <td>@message.UserName</td>
+                <td>@message.UserEmail</td>
+                <td>@message.UserPhone</td>
+                <td>@message.Title</td>
+                <td>@message.UserMessage</td>
+                <td><a href="/Admin/Messages/Delete/@message.Id" class="btn btn-danger btn-sm">Sil</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
