@@ -7,7 +7,7 @@
         {
             <a asp-controller="Blogs" asp-action="BlogDetails" asp-route-id="@blog.Id">
                 <h3>@blog.Title</h3>
-                <span><i class="far fa-clock"></i>@blog.Date</span>
+                <span><i class="far fa-clock"></i>@blog.Date.GetDateTimeFormats()[0]</span>
             </a>
         }
     </div>

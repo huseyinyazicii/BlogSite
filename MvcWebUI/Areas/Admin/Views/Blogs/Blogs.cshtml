@@ -28,9 +28,9 @@
                 <td scope="row">@blog.Id</td>
                 <td>@blog.Title</td>
                 <td>@blog.Date.GetDateTimeFormats()[0]</td>
-                <td><a class="btn btn-success btn-sm">Yorumlar</a></td>
-                <td><a class="btn btn-warning btn-sm text-white">Güncelle</a></td>
-                <td><a class="btn btn-danger btn-sm">Sil</a></td>
+                <td><a class="btn btn-success btn-sm" href="/Admin/Comments/GetByBlogId/@blog.Id">Yorumlar</a></td>
+                <td><a class="btn btn-warning btn-sm text-white" href="/Admin/Blogs/Update/@blog.Id">Güncelle</a></td>
+                <td><a class="btn btn-danger btn-sm" href="/Admin/Blogs/Delete/@blog.Id">Sil</a></td>
             </tr>
         }
     </tbody>

@@ -36,7 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Blog>> GetAll()
         {
-            var result = _blogDal.GetAll();
+            var result = _blogDal.GetAll(b => b.Status == true);
             return new SuccessDataResult<List<Blog>>(result);
         }
 

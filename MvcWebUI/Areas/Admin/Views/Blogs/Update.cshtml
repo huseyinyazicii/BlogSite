@@ -2,11 +2,12 @@
 
 <div class="row my-3">
     <div class="col-md-6">
-        <h3>Blog Ekle</h3>
+        <h3>Blog Güncelle</h3>
     </div>
 </div>
 
-<form asp-action="Add" asp-controller="Blogs" asp-area="Admin" method="post" enctype="multipart/form-data">
+<form asp-action="Update" asp-controller="Blogs" asp-area="Admin" method="post" enctype="multipart/form-data">
+    <input type="hidden"  asp-for="BlogData.Id" />
     <div class="mb-3 form-group">
         <label asp-for="BlogData.Title" class="form-label">Başlık</label>
         <input type="text" class="form-control" asp-for="BlogData.Title">
@@ -27,8 +28,8 @@
         <input type="file" class="form-control" asp-for="BlogData.Image">
         <span class="form-text text-danger" asp-validation-for="BlogData.Image"></span>
     </div>
-    <div class="text-center"><button type="submit" class="btn btn-primary">Ekle</button></div>
-</form>
+    <div class="text-center"><button type="submit" class="btn btn-warning text-white">Güncelle</button></div>
+</form> 
 
 @section Scripts{
     <script src="~/ckeditor/ckeditor.js"></script>

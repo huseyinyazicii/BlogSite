@@ -1,4 +1,5 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
+using AutoMapper;
 using Business.Abstract;
 using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
@@ -80,6 +81,63 @@ namespace MvcWebUI.Areas.Admin.Controllers
             blog.Date = Convert.ToDateTime(DateTime.Now.ToShortDateString());
             _blogService.Add(blog);
             _notyfService.Success("Blog Eklendi");
+            return RedirectToAction("Blogs");
+        }
+
+        public IActionResult Update(int id)
+        {
+            var blog = _blogService.GetById(id).Data;
+            BlogData blogData = new BlogData
+            {
+                Id = blog.Id,
+                CategoryId = blog.CategoryId,
+                Content = blog.Content,
+                Title = blog.Title
+            };
+            var model = new BlogViewModel
+            {
+                BlogData = blogData,
+                Categories = _categoryService.GetAll().Data
+            };
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Update(BlogData blogData)
+        {
+            if (!ModelState.IsValid)
+            {
+                var model = new BlogViewModel
+                {
+                    BlogData = blogData,
+                    Categories = _categoryService.GetAll().Data
+                };
+                return View(model);
+            }
+            var blog = _blogService.GetById(blogData.Id).Data;
+            if (blogData.Image != null)
+            {
+                var extension = Path.GetExtension(blogData.Image.FileName);
+                var newImageName = Guid.NewGuid() + extension;
+                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Blogs/", newImageName);
+                var stream = new FileStream(location, FileMode.Create);
+                blogData.Image.CopyTo(stream);
+                blog.Image = newImageName;
+            }
+            blog.CategoryId = blogData.CategoryId;
+            blog.Title = blogData.Title;
+            blog.Content = blogData.Content;
+            _blogService.Update(blog);
+            _notyfService.Warning("Blog Güncellendi");
+            return RedirectToAction("Blogs");
+        }
+
+        public IActionResult Delete(int id)
+        {
+            var blog = _blogService.GetById(id).Data;
+            blog.Status = false;
+            _blogService.Update(blog);
+            _notyfService.Error("Blog Silindi");
             return RedirectToAction("Blogs");
         }
     }

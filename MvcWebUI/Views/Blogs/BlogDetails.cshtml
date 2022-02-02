@@ -14,10 +14,10 @@
                 <img src="~/Images/Blogs/@Model.Blog.Image" alt="" class="image">
                 <div class="date">
                     <i class="far fa-clock"></i>
-                    <span>@Model.Blog.Date</span>
+                    <span>@Model.Blog.Date.GetDateTimeFormats()[0]</span>
                 </div>
                 <h3 class="title">@Model.Blog.Title</h3>
-                <p class="text">@Model.Blog.Content</p>
+                <p class="text">@Html.Raw(Model.Blog.Content)</p>
                 <div class="links">
                     <a href="#" class="user">
                         <i class="far fa-user"></i>

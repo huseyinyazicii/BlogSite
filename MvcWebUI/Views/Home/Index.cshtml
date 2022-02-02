@@ -26,7 +26,7 @@
                         <img src="~/Images/Blogs/@blog.Image" class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title text-center h1">@blog.Title</h5>
-                            <p class="card-text" style="font-size: 14px;">@blog.Content</p>
+                            <p class="card-text" style="font-size: 14px;">@Html.Raw(blog.Content.Substring(0, 5))...</p>
                             <div class="text-center">
                                 <a asp-controller="Blogs" asp-action="BlogDetails" asp-route-id="@blog.Id" class="btn">
                                     Devamını oku..

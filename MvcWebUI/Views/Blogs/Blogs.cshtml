@@ -9,17 +9,16 @@
     <section class="container" id="posts">
 
         <div class="posts-container columnTwo">
-
             @foreach (var blog in Model.Blogs)
             {
                 <div class="post">
                     <img src="~/Images/Blogs/@blog.Image" alt="" class="image">
                     <div class="date">
                         <i class="far fa-clock"></i>
-                        <span>@blog.Date</span>
+                        <span>@blog.Date.GetDateTimeFormats()[0]</span>
                     </div>
                     <h3 class="title">@blog.Title</h3>
-                    <p class="text">@blog.Content</p>
+                    <p class="text">@Html.Raw(blog.Content.Substring(0,5))...</p>
                     <a asp-controller="Blogs" asp-action="BlogDetails" asp-route-id="@blog.Id" class="btn">Devamnı oku..</a>
                     <div class="links">
                         <a href="#" class="user">
@@ -37,7 +36,6 @@
                     </div>
                 </div>
             }
-
         </div>
 
         <div class="sidebar">

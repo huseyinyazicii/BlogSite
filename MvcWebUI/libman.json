@@ -22,13 +22,6 @@
       "destination": "wwwroot/SweetAlert2"
     },
     {
-      "library": "font-awesome@5.15.4",
-      "destination": "wwwroot/Fontawsome/",
-      "files": [
-        "css/all.min.css"
-      ]
-    },
-    {
       "library": "jquery-validate@1.19.3",
       "destination": "wwwroot/Jquery/",
       "files": [
@@ -45,6 +38,10 @@
     {
       "library": "ckeditor@4.17.1",
       "destination": "wwwroot/ckeditor/"
+    },
+    {
+      "library": "font-awesome@5.15.4",
+      "destination": "wwwroot/Fontawesome/"
     }
   ]
 }
