@@ -36,12 +36,16 @@
       ]
     },
     {
-      "library": "ckeditor@4.17.1",
-      "destination": "wwwroot/ckeditor/"
-    },
-    {
       "library": "font-awesome@5.15.4",
       "destination": "wwwroot/Fontawesome/"
+    },
+    {
+      "library": "summernote@0.8.20",
+      "destination": "wwwroot/summernote/",
+      "files": [
+        "summernote-lite.min.css",
+        "summernote-lite.min.js"
+      ]
     }
   ]
 }

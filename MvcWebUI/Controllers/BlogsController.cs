@@ -1,6 +1,7 @@
 ﻿using AspNetCoreHero.ToastNotification.Abstractions;
 using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MvcWebUI.Models;
 using MvcWebUI.Utilities.Constants;
@@ -40,6 +41,36 @@ namespace MvcWebUI.Controllers
                 Blog = _blogService.GetBlogDetailsById(id).Data
             };
             return View(model);
+        }
+
+        public IActionResult LikeIncrease(int id)  
+        {
+            var check = Request.Cookies["like"];
+            if (check == id.ToString())
+            {
+                _notyfService.Warning("Blog Zaten Beğenilmiş");
+                return Redirect("/Blogs/BlogDetails/" + id);
+            }
+            var blog = _blogService.GetById(id).Data;
+            blog.NumberOfLikes++;
+            _blogService.Update(blog);
+            CookieOptions cookie = new CookieOptions();
+            cookie.Expires = DateTime.Now.AddYears(1);
+            Response.Cookies.Append("like", id.ToString(), cookie);
+            _notyfService.Success("Blog Beğenildi");
+            return Redirect("/Blogs/BlogDetails/" + id);
+            //var check = HttpContext.Session.GetInt32("like");
+            //if(check == 1)
+            //{
+            //    _notyfService.Warning("Blog Zaten Beğenilmiş");
+            //    return Redirect("/Blogs/BlogDetails/" + id);
+            //}
+            //var blog = _blogService.GetById(id).Data;
+            //blog.NumberOfLikes++;
+            //_blogService.Update(blog);
+            //HttpContext.Session.SetInt32("like", 1);
+            //_notyfService.Success("Blog Beğenildi");
+            //return Redirect("/Blogs/BlogDetails/" + id);
         }
     }
 }

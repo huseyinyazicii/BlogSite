@@ -29,6 +29,9 @@ namespace MvcWebUI
         {
             services.AddAutoMapper(typeof(MessageProfile));
 
+            services.AddSession();
+            services.AddDistributedMemoryCache();
+
             services.AddControllersWithViews();
 
             services.AddNotyf(config =>
@@ -63,6 +66,10 @@ namespace MvcWebUI
             app.UseStaticFiles();
 
             app.UseRouting();
+
+            app.UseCookiePolicy();
+
+            app.UseSession();
 
             app.UseAuthorization();
 

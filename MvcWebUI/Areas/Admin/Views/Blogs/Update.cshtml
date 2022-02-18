@@ -24,9 +24,8 @@
         <span class="form-text text-danger" asp-validation-for="BlogData.Content"></span>
     </div>
     <div class="mb-3 form-group">
-        <label asp-for="BlogData.Image" class="form-label">Resim</label>
-        <input type="file" class="form-control" asp-for="BlogData.Image">
-        <span class="form-text text-danger" asp-validation-for="BlogData.Image"></span>
+        <label class="form-label">Resim</label>
+        <input type="file" class="form-control" name="image">
     </div>
     <div class="text-center"><button type="submit" class="btn btn-warning text-white">Güncelle</button></div>
 </form> 

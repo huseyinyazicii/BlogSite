@@ -3,12 +3,13 @@
 @section Css
 {
     <link rel="stylesheet" href="~/SiteTemplate/css/blogs.css">
+    <link rel="stylesheet" href="~/SiteTemplate/css/common.css">
 }
 
 <div style="background-color: #EEEEEE;">
     <section class="container" id="posts">
 
-        <div class="posts-container columnTwo">
+        <div class="posts-container columnTwo"  style="grid-auto-rows:minmax(min-content, max-content)">
             @foreach (var blog in Model.Blogs)
             {
                 <div class="post">
@@ -18,18 +19,18 @@
                         <span>@blog.Date.GetDateTimeFormats()[0]</span>
                     </div>
                     <h3 class="title">@blog.Title</h3>
-                    <p class="text">@Html.Raw(blog.Content.Substring(0,5))...</p>
+                    <p class="text">@Html.Raw(blog.Content.Substring(0, 5))...</p>
                     <a asp-controller="Blogs" asp-action="BlogDetails" asp-route-id="@blog.Id" class="btn">Devamnı oku..</a>
                     <div class="links">
-                        <a href="#" class="user">
+                        <a class="user">
                             <i class="far fa-user"></i>
                             <span>@blog.WriterFullName</span>
                         </a>
-                        <a href="#" class="icon">
+                        <a class="icon">
                             <i class="far fa-comment"></i>
                             <span>@blog.NumberOfComments</span>
                         </a>
-                        <a href="#" class="icon">
+                        <a class="icon">
                             <i class="far fa-thumbs-up"></i>
                             <span>@blog.NumberOfLikes</span>
                         </a>

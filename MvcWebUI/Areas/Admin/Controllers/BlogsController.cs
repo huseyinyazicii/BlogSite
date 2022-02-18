@@ -2,9 +2,11 @@
 using AutoMapper;
 using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MvcWebUI.Areas.Admin.Models;
 using MvcWebUI.Areas.Admin.Models.DataModels;
+using MvcWebUI.Utilities.Image;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -46,7 +48,7 @@ namespace MvcWebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add(BlogData blogData)
+        public IActionResult Add(BlogData blogData, IFormFile image)
         {
             if (!ModelState.IsValid)
             {
@@ -58,14 +60,9 @@ namespace MvcWebUI.Areas.Admin.Controllers
                 return View(model);
             }
             var blog = new Blog();
-            if(blogData.Image != null)
+            if(image != null)
             {
-                var extension = Path.GetExtension(blogData.Image.FileName);
-                var newImageName = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Blogs/", newImageName);
-                var stream = new FileStream(location, FileMode.Create);
-                blogData.Image.CopyTo(stream);
-                blog.Image = newImageName;
+                blog.Image = ImageFile.Add(image, "wwwroot/Images/Blogs/");
             }
             else
             {
@@ -103,7 +100,7 @@ namespace MvcWebUI.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(BlogData blogData)
+        public IActionResult Update(BlogData blogData, IFormFile image)
         {
             if (!ModelState.IsValid)
             {
@@ -114,16 +111,14 @@ namespace MvcWebUI.Areas.Admin.Controllers
                 };
                 return View(model);
             }
+
             var blog = _blogService.GetById(blogData.Id).Data;
+
             if (blogData.Image != null)
             {
-                var extension = Path.GetExtension(blogData.Image.FileName);
-                var newImageName = Guid.NewGuid() + extension;
-                var location = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/Images/Blogs/", newImageName);
-                var stream = new FileStream(location, FileMode.Create);
-                blogData.Image.CopyTo(stream);
-                blog.Image = newImageName;
+                blog.Image = ImageFile.Add(image, "wwwroot/Images/Blogs/");
             }
+
             blog.CategoryId = blogData.CategoryId;
             blog.Title = blogData.Title;
             blog.Content = blogData.Content;
